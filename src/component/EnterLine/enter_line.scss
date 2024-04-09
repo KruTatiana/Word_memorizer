@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.enter {
+  &_en-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %enter-cell;
+    @extend %flex-center;
+  }
+
+  &_tr-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %enter-cell;
+    @extend %flex-center;
+  }
+
+  &_ru-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %enter-cell;
+    @extend %flex-center;
+  }
+}
+
+input {
+  height: 55%;
+  width: 90%;
+  padding-left: 2%;
+  border: solid 1.5px $green-color;
+  border-radius: 4px;
+  background-color: $beige-color;
+  cursor:pointer;
+
+  &::placeholder {
+    color: $gray-color;
+  }
+
+  &:focus {
+    border: solid 2px $gray-color;
+    outline: 0;
+  }
+}

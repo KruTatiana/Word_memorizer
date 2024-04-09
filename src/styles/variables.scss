@@ -1,7 +1,71 @@
-$font-stack: Helvetica, sans-serif;
+$font-stack: Inter, system-ui, Avenir, Helvetica, sans-serif;
 //4538
 $beige-color: #EDE1CF;
 $brown-color: #D9C5BC;
 $gray-color: #B6ADAF;
 $light-green-color: #76A1A7;
 $green-color: #107980;
+
+%buttons-style {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 8px;
+  background-color: $light-green-color;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+%table-cell {
+  color: $green-color;
+  border: solid 2px $brown-color;
+  background-color: $beige-color;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%enter-cell {
+  border: solid 2px $brown-color;
+  background-color: $light-green-color;
+  ;
+}
+
+button {
+  &:hover{
+  border: solid 2px $green-color;
+  }
+  &:active{
+    background-color: $beige-color;
+  }
+}
+
+.button_edit {
+  @extend %buttons-style;
+  background-image: url('../../assets/icons8-edit.png');
+}
+
+.button_delete {
+  margin-left: 5%;
+  @extend %buttons-style;
+  background-image: url('../../assets/icons8-delete.png');
+}
+
+.button_save {
+  margin-right: 5%;
+  @extend %buttons-style;
+  background-image: url('../../assets/icons8-check.png');
+}
+
+.buttons {
+  width: 19%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  @extend %table-cell;
+  @extend %flex-center;
+}

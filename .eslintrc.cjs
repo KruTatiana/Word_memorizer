@@ -12,11 +12,19 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
-    'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
-    "react/prop-types": [<enabled />, { ignore: <ignore />, customValidators: <customValidator />, skipUndeclared: <skipUndeclared /> }],
+    "react/prop-types": 0,
+  },
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `
+          @use "@/styles/mixins.scss" as *;
+        `,
+      },
+    },
   },
 }

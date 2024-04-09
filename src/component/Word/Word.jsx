@@ -1,3 +1,5 @@
+//import styles from './word.scss';
+
 function Word(props) {
   return (
     <div>

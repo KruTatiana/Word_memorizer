@@ -1,4 +1,5 @@
 import Word from "../Word/Word";
+//import styles from './word_card.scss';
 
 function WordCard() {
   return(
@@ -9,10 +10,6 @@ function WordCard() {
           transcription = "[læptɒp]"
           russian = "ноутбук"
         />
-      </div>
-      <div className="card_footer">
-        <button>Редактировать</button>
-        <button>Удалить</button>
       </div>
     </div>
   );

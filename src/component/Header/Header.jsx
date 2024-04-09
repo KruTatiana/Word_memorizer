@@ -1,6 +1,8 @@
+import './header.scss';
+
 function Header () {
   return(
-    <header>
+    <header className='header'>
       <h2>Учим слова</h2>
       </header>
   );

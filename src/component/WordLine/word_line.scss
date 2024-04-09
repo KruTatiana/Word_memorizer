@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+.line {
+
+  &_en-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+
+  &_tr-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+
+  &_ru-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+}

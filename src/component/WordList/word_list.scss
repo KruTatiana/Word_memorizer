@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+
+.list {
+    margin: 0 auto;
+    width: 60%;
+  
+  &_head {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-weight: 700;
+  }
+
+  &_en {
+    height: 2rem;
+    flex-basis: calc(0.81/3*100%);
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+
+  &_tr {
+    height: 2rem;
+    flex-basis: calc(0.81/3*100%);
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+
+  &_ru {
+    height: 2rem;
+    flex-basis: calc(0.81/3*100%);
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+
+  &_empty {
+    height: 2rem;
+    flex-basis: 19%;
+    @extend %table-cell;
+    @extend %flex-center;
+  }
+}
+
+.line {
+
+  &_word{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &_input{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+}
