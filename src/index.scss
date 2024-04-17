@@ -1,10 +1,11 @@
+@import './styles/variables.scss';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #EDE1CF;
-  background-color: #107980;
-
+  color: $beige-color;
+  background-color: $green-color;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +21,27 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+button {
+  &:hover{
+  border: solid 2px $green-color;
+  color: $green-color;
+  }
+  &:active{
+    background-color: $beige-color;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+li {
+  list-style-type: none;
 }

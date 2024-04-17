@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.button_checkWord {
+  margin: 0 auto;
+  width: 60%;
+  height: 2rem;
+  @extend %flex-center;
+  @extend %buttons-style;
+  background-color: $beige-color;
+  color: $light-green-color;
+  font-weight: 600;
+}
+
+.word_body {
+  margin-bottom: 30%;
+}

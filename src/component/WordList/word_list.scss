@@ -2,7 +2,8 @@
 
 .list {
     margin: 0 auto;
-    width: 60%;
+    width: 80%;
+    padding-left: 0;
   
   &_head {
     display: flex;
@@ -53,4 +54,49 @@
     display: flex;
     flex-direction: row;
   }
+}
+
+.buttons {
+  width: 19%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  @extend %table-cell;
+  @extend %flex-center;
+}
+
+
+
+.button_save {
+  margin-right: 5%;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-check.png');
+}
+
+.button_back {
+  margin-right: 5%;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-back.png');
+}
+
+
+.button_edit {
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-edit.png');
+}
+
+.button_delete {
+  margin-left: 5%;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-delete.png');
+}
+
+.button_close {
+
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-close.png');
 }

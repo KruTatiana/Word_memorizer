@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+
+.card {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: $brown-color;
+  color: $green-color;
+  border-radius: 8px;
+}

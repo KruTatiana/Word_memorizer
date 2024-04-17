@@ -1,17 +1,13 @@
-import './word_line.scss';
+import "./word_line.scss";
 
-const WordLine = () => {
-  return(
+const WordLine = ({ en, trnsc, ru }) => {
+  return (
     <>
-      <div className='line_en-word'>laptop</div>
-      <div className='line_tr-word'>&#91;læptɒp&#93;</div>
-      <div className='line_ru-word'>ноутбук</div>
-      <div className="buttons">
-        <button className='button_edit' id='buttonEditWord'></button>
-        <button className='button_delete'></button>
-      </div>
+      <div className="line_en-word">{en}</div>
+      <div className="line_tr-word">{trnsc}</div>
+      <div className="line_ru-word">{ru}</div>
     </>
-  )
+  );
 };
 
 export default WordLine;

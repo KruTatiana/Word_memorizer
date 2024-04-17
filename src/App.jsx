@@ -1,19 +1,18 @@
-import './App.css'
-import Footer from './component/Footer/Footer';
-import Header from './component/Header/Header';
-import WordCard from './component/WordCard/WordCard';
-import WordsList from './component/WordList/WordsList';
+import "./App.scss";
+import Footer from "./component/Footer/Footer";
+import Header from "./component/Header/Header";
+import WordCard from "./component/WordCard/WordCard";
+import WordsList from "./component/WordList/WordsList";
 
 function App() {
-
   return (
     <>
       <Header />
       <WordCard />
       <WordsList />
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

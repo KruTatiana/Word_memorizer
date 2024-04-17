@@ -7,15 +7,18 @@ $light-green-color: #76A1A7;
 $green-color: #107980;
 
 %buttons-style {
-  width: 35px;
-  height: 35px;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+%buttons-table {
+  width: 35px;
+  height: 35px;
   background-color: $light-green-color;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  cursor: pointer;
 }
 
 %table-cell {
@@ -34,38 +37,4 @@ $green-color: #107980;
   border: solid 2px $brown-color;
   background-color: $light-green-color;
   ;
-}
-
-button {
-  &:hover{
-  border: solid 2px $green-color;
-  }
-  &:active{
-    background-color: $beige-color;
-  }
-}
-
-.button_edit {
-  @extend %buttons-style;
-  background-image: url('../../assets/icons8-edit.png');
-}
-
-.button_delete {
-  margin-left: 5%;
-  @extend %buttons-style;
-  background-image: url('../../assets/icons8-delete.png');
-}
-
-.button_save {
-  margin-right: 5%;
-  @extend %buttons-style;
-  background-image: url('../../assets/icons8-check.png');
-}
-
-.buttons {
-  width: 19%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  @extend %table-cell;
-  @extend %flex-center;
 }

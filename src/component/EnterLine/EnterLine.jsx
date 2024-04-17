@@ -1,18 +1,35 @@
-import './enter_line.scss';
+import { useState } from "react";
+import "./enter_line.scss";
 
-const EnterLine = () => {
-  return(
+const EnterLine = ({ en, trnsc, ru }) => {
+  return (
     <>
-      <div className='enter_en-word'><input type="text" id="en_word" placeholder="слово" /></div>
-      <div className='enter_tr-word'><input type="text" id="tr-word" placeholder="транскрипция" /></div>
-      <div className='enter_ru-word'><input type="text" id="ru-word" placeholder="перевод" /></div>
-      <div className="buttons">
-        <button className="button_save"></button>
-        <button className="button_edit"></button>
-        <button className="button_delete"></button>
+      <div className="enter_en-word">
+        <input
+          onFocus={(e) => (e.target.value = "")}
+          type="text"
+          id="en_word"
+          defaultValue={en}
+        />
+      </div>
+      <div className="enter_tr-word">
+        <input
+          onFocus={(e) => (e.target.value = "")}
+          type="text"
+          id="tr-word"
+          defaultValue={trnsc}
+        />
+      </div>
+      <div className="enter_ru-word">
+        <input
+          onFocus={(e) => (e.target.value = "")}
+          type="text"
+          id="ru-word"
+          defaultValue={ru}
+        />
       </div>
     </>
-  )
+  );
 };
 
 export default EnterLine;
