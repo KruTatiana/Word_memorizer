@@ -1,11 +1,74 @@
+import { useState } from "react";
 import "./word_line.scss";
 
 const WordLine = ({ en, trnsc, ru }) => {
+  const [edit, setEdit] = useState(false);
+  const [save, setSave] = useState(false);
+  const [back, setBack] = useState(false);
+  const [close, setClose] = useState(false);
+
+  const handleEdit = () => {
+    setEdit(!edit);
+  };
+
+  const handleSave = () => {
+    setSave(!save);
+  };
+
+  const handleBack = () => {
+    setBack(!back);
+  };
+
+  const handleClose = () => {
+    setClose(!close);
+  };
+
   return (
     <>
-      <div className="line_en-word">{en}</div>
-      <div className="line_tr-word">{trnsc}</div>
-      <div className="line_ru-word">{ru}</div>
+      <div className={edit && !back && !close ? "hide" : "line_word"}>
+        <div className="en-word">{en}</div>
+        <div className="tr-word">{trnsc}</div>
+        <div className="ru-word">{ru}</div>
+        <div className="buttons">
+          <button
+            onClick={handleEdit}
+            className="button_edit"
+            id="buttonEditWord"
+          ></button>
+          <button className="button_delete"></button>
+        </div>
+      </div>
+      <div className={edit && !back && !close ? "line_input" : "hide"}>
+        <div className="en-word">
+          <input
+            onFocus={(e) => (e.target.value = "")}
+            type="text"
+            id="en_word"
+            defaultValue={en}
+          />
+        </div>
+        <div className="tr-word">
+          <input
+            onFocus={(e) => (e.target.value = "")}
+            type="text"
+            id="tr-word"
+            defaultValue={trnsc}
+          />
+        </div>
+        <div className="ru-word">
+          <input
+            onFocus={(e) => (e.target.value = "")}
+            type="text"
+            id="ru-word"
+            defaultValue={ru}
+          />
+        </div>
+        <div className="buttons">
+          <button onClick={handleSave} className="button_save"></button>
+          <button onClick={handleBack} className="button_back"></button>
+          <button onClick={handleClose} className="button_close"></button>
+        </div>
+      </div>
     </>
   );
 };

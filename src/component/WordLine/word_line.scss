@@ -1,22 +1,116 @@
 @import '../../styles/variables.scss';
 
-.line {
+.line_word {
 
-  &_en-word {
+  width: 100%;
+    display: flex;
+    flex-direction: row;
+
+  .en-word {
     flex-basis: calc(0.81/3*100%);
     @extend %table-cell;
     @extend %flex-center;
   }
 
-  &_tr-word {
+  .tr-word {
     flex-basis: calc(0.81/3*100%);
     @extend %table-cell;
     @extend %flex-center;
   }
 
-  &_ru-word {
+  .ru-word {
     flex-basis: calc(0.81/3*100%);
     @extend %table-cell;
     @extend %flex-center;
   }
 }
+
+.line_input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+
+  .en-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %enter-cell;
+    @extend %flex-center;
+  }
+
+  .tr-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %enter-cell;
+    @extend %flex-center;
+  }
+
+  .ru-word {
+    flex-basis: calc(0.81/3*100%);
+    @extend %enter-cell;
+    @extend %flex-center;
+  }
+}
+
+input {
+  height: 55%;
+  width: 90%;
+  padding-left: 2%;
+  border: solid 1.5px $green-color;
+  border-radius: 4px;
+  background-color: $beige-color;
+  cursor:pointer;
+
+  &::placeholder {
+    color: $gray-color;
+  }
+
+  &:focus {
+    border: solid 2px $gray-color;
+    outline: 0;
+  }
+}
+
+.buttons {
+  width: 19%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  @extend %table-cell;
+  @extend %flex-center;
+}
+
+
+
+.button_save {
+  margin-right: 5%;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-check.png');
+}
+
+.button_back {
+  margin-right: 5%;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-back.png');
+}
+
+
+.button_edit {
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-edit.png');
+}
+
+.button_delete {
+  margin-left: 5%;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-delete.png');
+}
+
+.button_close {
+
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-close.png');
+}
+
