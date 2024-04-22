@@ -81,6 +81,7 @@ input {
 
 .button_save {
   margin-right: 5%;
+  background-color: $light-green-color;
   @extend %buttons-table;
   @extend %buttons-style;
   background-image: url('../../src/assets/icons8-check.png');
@@ -88,6 +89,7 @@ input {
 
 .button_back {
   margin-right: 5%;
+  background-color: $light-green-color;
   @extend %buttons-table;
   @extend %buttons-style;
   background-image: url('../../src/assets/icons8-back.png');
@@ -95,12 +97,14 @@ input {
 
 
 .button_edit {
+  background-color: $light-green-color;
   @extend %buttons-table;
   @extend %buttons-style;
   background-image: url('../../src/assets/icons8-edit.png');
 }
 
 .button_delete {
+  background-color: $light-green-color;
   margin-left: 5%;
   @extend %buttons-table;
   @extend %buttons-style;
@@ -108,7 +112,7 @@ input {
 }
 
 .button_close {
-
+  background-color: $light-green-color;
   @extend %buttons-table;
   @extend %buttons-style;
   background-image: url('../../src/assets/icons8-close.png');

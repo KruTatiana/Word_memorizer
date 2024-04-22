@@ -20,12 +20,13 @@ const WordLine = ({ en, trnsc, ru }) => {
   };
 
   const handleClose = () => {
+    setEdit(false);
     setClose(!close);
   };
 
   return (
     <>
-      <div className={edit && !back && !close ? "hide" : "line_word"}>
+      <div className={edit ? "hide" : "line_word"}>
         <div className="en-word">{en}</div>
         <div className="tr-word">{trnsc}</div>
         <div className="ru-word">{ru}</div>
@@ -38,7 +39,7 @@ const WordLine = ({ en, trnsc, ru }) => {
           <button className="button_delete"></button>
         </div>
       </div>
-      <div className={edit && !back && !close ? "line_input" : "hide"}>
+      <div className={edit ? "line_input" : "hide"}>
         <div className="en-word">
           <input
             onFocus={(e) => (e.target.value = "")}

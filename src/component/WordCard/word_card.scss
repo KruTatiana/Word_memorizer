@@ -2,13 +2,49 @@
 
 .card {
   width: 25%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin: 10% 3%;
   padding-top: 5%;
   padding-bottom: 5%;
   background-color: $brown-color;
   color: $green-color;
   border-radius: 8px;
 }
+
+.card_container {
+  display: flex;
+
+  .previous {
+    height: 3.5rem;
+    width: 3.5rem;
+    margin-left: auto;
+    align-self: center;
+    @extend %buttons-table;
+    @extend %buttons-style;
+    @extend %flex-center;
+    background-color: $light-green-color;
+    background-image: url('../../src/assets/icons8-previous.png');
+  }
+
+  .next {
+    height: 3.5rem;
+    width: 3.5rem;
+    margin-right: auto;
+    align-self: center;
+    @extend %buttons-table;
+    @extend %buttons-style;
+    @extend %flex-center;
+    background-color: $light-green-color;
+    background-image: url('../../src/assets/icons8-next.png');
+  }
+
+  .button{
+    &:hover{
+      border: solid 2px $brown-color;
+      color: $green-color;
+      }
+      &:active{
+        background-color: $beige-color;
+      }
+  }
+}
+
