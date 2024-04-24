@@ -21,16 +21,14 @@ function WordCard() {
           itemIndex == 0 ? setIndex(endItem) : setIndex(itemIndex - 1);
         }}
       ></button>
-      <div className="card">
-        <Flip>
-          <Word
-            en={wordObj.english}
-            tr={wordObj.transcription}
-            ru={wordObj.russian}
-            key={wordObj.id}
-          />
-        </Flip>
-      </div>
+      <Flip className="card">
+        <Word
+          en={wordObj.english}
+          tr={wordObj.transcription}
+          ru={wordObj.russian}
+          key={wordObj.id}
+        />
+      </Flip>
       <button
         className="button next"
         onClick={() => {
