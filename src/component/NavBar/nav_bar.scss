@@ -1,0 +1,25 @@
+@import "../../styles/variables.scss";
+
+.navigation {
+  margin: 0;
+  padding-left: 0;
+  padding-top: 2%;
+  list-style: none;
+  @extend %flex-row;
+
+  .item {
+    margin-right: 10%;
+  }
+
+  .link {  
+    outline: none;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: $beige-color;
+  }
+
+  .link:hover{
+    font-weight: 700;
+  }
+}

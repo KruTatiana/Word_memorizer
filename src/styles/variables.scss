@@ -37,3 +37,9 @@ $green-color: #107980;
   background-color: $light-green-color;
   ;
 }
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

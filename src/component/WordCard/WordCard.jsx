@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Word from "../Word/Word";
 import "./word_card.scss";
 import wordsArr from "../dictionary";

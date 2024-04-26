@@ -13,28 +13,28 @@
   }
 
   &_en {
-    height: 2rem;
+    height: 4rem;
     flex-basis: calc(0.81/3*100%);
     @extend %table-cell;
     @extend %flex-center;
   }
 
   &_tr {
-    height: 2rem;
+    height: 4rem;
     flex-basis: calc(0.81/3*100%);
     @extend %table-cell;
     @extend %flex-center;
   }
 
   &_ru {
-    height: 2rem;
+    height: 4rem;
     flex-basis: calc(0.81/3*100%);
     @extend %table-cell;
     @extend %flex-center;
   }
 
   &_empty {
-    height: 2rem;
+    height: 4rem;
     flex-basis: 19%;
     @extend %table-cell;
     @extend %flex-center;
