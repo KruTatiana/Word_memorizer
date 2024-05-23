@@ -1,6 +1,6 @@
-import "./word_list.scss";
-import WordLine from "../WordLine/WordLine";
-import wordsArr from "../dictionary";
+import "./table.scss";
+import WordLine from "../../component/WordLine/WordLine";
+import wordsArr from "../../component/dictionary";
 
 const WordsList = () => {
   return (

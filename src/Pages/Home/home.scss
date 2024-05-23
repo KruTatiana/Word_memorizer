@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.home_container {
+  width: 25%;
+  margin: 7% 5% 0;
+  @extend %buttons-style;
+
+  .img {
+  width: 95%;
+  }
+}

@@ -7,6 +7,10 @@ const WordLine = ({ en, trnsc, ru }) => {
   const [back, setBack] = useState(false);
   const [close, setClose] = useState(false);
 
+  let enValueSave;
+  let trValueSave;
+  let ruValueSave;
+
   const handleEdit = () => {
     setEdit(!edit);
   };
@@ -42,7 +46,10 @@ const WordLine = ({ en, trnsc, ru }) => {
       <div className={edit ? "line_input" : "hide"}>
         <div className="en-word">
           <input
-            onFocus={(e) => (e.target.value = "")}
+            onFocus={(e) => {
+              enValueSave = e.value;
+              e.target.value = "";
+            }}
             type="text"
             id="en_word"
             defaultValue={en}
@@ -50,17 +57,23 @@ const WordLine = ({ en, trnsc, ru }) => {
         </div>
         <div className="tr-word">
           <input
-            onFocus={(e) => (e.target.value = "")}
+            onFocus={(e) => {
+              trValueSave = e.value;
+              e.target.value = "";
+            }}
             type="text"
-            id="tr-word"
+            id="tr_word"
             defaultValue={trnsc}
           />
         </div>
         <div className="ru-word">
           <input
-            onFocus={(e) => (e.target.value = "")}
+            onFocus={(e) => {
+              ruValueSave = e.value;
+              e.target.value = "";
+            }}
             type="text"
-            id="ru-word"
+            id="ru_word"
             defaultValue={ru}
           />
         </div>

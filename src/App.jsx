@@ -1,9 +1,7 @@
-import "./App.scss";
+import "./styles/App.scss";
 import Footer from "./component/Footer/Footer";
 import Header from "./component/Header/Header";
-import NotFound from "./component/NotFound/NotFound";
-import WordCard from "./component/WordCard/WordCard";
-import WordsList from "./component/WordList/WordsList";
+import { Home, Game, Table, NotFound } from "./Pages";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -12,8 +10,9 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<WordsList />}></Route>
-          <Route path="/game" element={<WordCard />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/table" element={<Table />}></Route>
+          <Route path="/game" element={<Game />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />

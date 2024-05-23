@@ -1,17 +1,12 @@
 @import '../../styles/variables.scss';
 
-.card {
-  width: 25%;
-  margin: 10% 3%;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  background-color: $brown-color;
-  color: $green-color;
-  border-radius: 8px;
-}
-
 .card_container {
   display: flex;
+
+  .card {
+    width: 25%;
+    margin: 10% 3%;
+  }
 
   .previous {
     height: 3.5rem;

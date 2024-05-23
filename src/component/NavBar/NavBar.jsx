@@ -11,9 +11,14 @@ export default function NavBar() {
               Главная
             </Link>
           </li>
-          <li>
+          <li className="item">
             <Link className="link" to="/game">
               Игра
+            </Link>
+          </li>
+          <li>
+            <Link className="link" to="/table">
+              Словарь
             </Link>
           </li>
         </ul>

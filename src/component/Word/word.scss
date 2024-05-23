@@ -14,3 +14,12 @@
 .word_body {
   margin-bottom: 30%;
 }
+
+.word_container {
+    width: 100%;
+    background-color: $brown-color;
+    color: $green-color;
+    border-radius: 8px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}

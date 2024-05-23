@@ -1,38 +1,40 @@
 import { useState } from "react";
-import Word from "../Word/Word";
-import "./word_card.scss";
-import wordsArr from "../dictionary";
-import styled, { keyframes } from "styled-components";
-import { flipInY } from "react-animations";
+import Word from "../../component/Word/Word";
+import "./game.scss";
+import wordsArr from "../../component/dictionary";
 
 function WordCard() {
   const [itemIndex, setIndex] = useState(0);
+  const [wordsCount, setCount] = useState(0);
   const endItem = wordsArr.length - 1;
   const wordObj = wordsArr[itemIndex];
-  const Flip = styled.div`
-    animation: 2s ${keyframes`${flipInY}`};
-  `;
+
+  const addCount = () => {
+    setCount(wordsCount + 1);
+  };
 
   return (
     <div className="card_container">
       <button
         className="button previous"
         onClick={() => {
-          itemIndex == 0 ? setIndex(endItem) : setIndex(itemIndex - 1);
+          itemIndex === 0 ? setIndex(endItem) : setIndex(itemIndex - 1);
         }}
       ></button>
-      <Flip className="card">
+      <div className="card">
         <Word
           en={wordObj.english}
           tr={wordObj.transcription}
           ru={wordObj.russian}
           key={wordObj.id}
+          addCount={addCount}
         />
-      </Flip>
+        <div>изучено {wordsCount} слов</div>
+      </div>
       <button
         className="button next"
         onClick={() => {
-          itemIndex == endItem ? setIndex(0) : setIndex(itemIndex + 1);
+          itemIndex === endItem ? setIndex(0) : setIndex(itemIndex + 1);
         }}
       ></button>
     </div>
