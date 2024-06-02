@@ -1,31 +1,43 @@
 import { useState } from "react";
 import "./word_line.scss";
 
-const WordLine = ({ en, trnsc, ru }) => {
+const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
   const [edit, setEdit] = useState(false);
-  const [save, setSave] = useState(false);
-  const [back, setBack] = useState(false);
-  const [close, setClose] = useState(false);
+  const [values, setValues] = useState({ en, trnsc, ru });
+  const [word, setWord] = useState(true);
 
-  let enValueSave;
-  let trValueSave;
-  let ruValueSave;
+  let enValueSave = en;
+  let trValueSave = trnsc;
+  let ruValueSave = ru;
 
   const handleEdit = () => {
-    setEdit(!edit);
+    setEdit(true);
+    enValueSave = values.en;
+    trValueSave = values.trnsc;
+    ruValueSave = values.ru;
   };
 
   const handleSave = () => {
-    setSave(!save);
+    setEdit(false);
+    saveEdit(id, values.en, values.trnsc, values.ru);
   };
 
   const handleBack = () => {
-    setBack(!back);
+    setValues({ en: enValueSave, trnsc: trValueSave, ru: ruValueSave });
+    setEdit(false);
   };
 
   const handleClose = () => {
     setEdit(false);
-    setClose(!close);
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [id]: value,
+    }));
+    e.target.value === "" ? setWord(false) : setWord(true);
   };
 
   return (
@@ -46,39 +58,37 @@ const WordLine = ({ en, trnsc, ru }) => {
       <div className={edit ? "line_input" : "hide"}>
         <div className="en-word">
           <input
-            onFocus={(e) => {
-              enValueSave = e.value;
-              e.target.value = "";
-            }}
             type="text"
-            id="en_word"
-            defaultValue={en}
+            id="en"
+            value={values.en}
+            onChange={handleChange}
+            className={values.en === "" ? "empty_input" : "input"}
           />
         </div>
         <div className="tr-word">
           <input
-            onFocus={(e) => {
-              trValueSave = e.value;
-              e.target.value = "";
-            }}
             type="text"
-            id="tr_word"
-            defaultValue={trnsc}
+            id="tr"
+            value={values.trnsc}
+            onChange={handleChange}
+            className={values.trnsc === "" ? "empty_input" : "input"}
           />
         </div>
         <div className="ru-word">
           <input
-            onFocus={(e) => {
-              ruValueSave = e.value;
-              e.target.value = "";
-            }}
             type="text"
-            id="ru_word"
-            defaultValue={ru}
+            id="ru"
+            value={values.ru}
+            onChange={handleChange}
+            className={values.ru === "" ? "empty_input" : "input"}
           />
         </div>
         <div className="buttons">
-          <button onClick={handleSave} className="button_save"></button>
+          <button
+            onClick={handleSave}
+            disabled={word === false ? true : ""}
+            className={word === false ? "button_save_disabled" : "button_save"}
+          ></button>
           <button onClick={handleBack} className="button_back"></button>
           <button onClick={handleClose} className="button_close"></button>
         </div>

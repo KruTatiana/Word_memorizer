@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
 import Word from "../../component/Word/Word";
 import "./game.scss";
 import wordsArr from "../../component/dictionary";

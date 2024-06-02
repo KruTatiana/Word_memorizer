@@ -50,7 +50,7 @@
   }
 }
 
-input {
+.input {
   height: 55%;
   width: 90%;
   padding-left: 2%;
@@ -65,6 +65,22 @@ input {
 
   &:focus {
     border: solid 2px $gray-color;
+    outline: 0;
+  }
+
+}
+
+.empty_input {
+  height: 55%;
+  width: 90%;
+  padding-left: 2%;
+  border: solid 1.5px red;
+  border-radius: 4px;
+  background-color: $beige-color;
+  cursor:pointer;
+
+  &:focus {
+    border: solid 2px red;
     outline: 0;
   }
 }
@@ -118,3 +134,14 @@ input {
   background-image: url('../../src/assets/icons8-close.png');
 }
 
+.button_save_disabled {
+  margin-right: 5%;
+  background-color: $gray-color;
+  @extend %buttons-table;
+  @extend %buttons-style;
+  background-image: url('../../src/assets/icons8-check.png');
+}
+
+.button_save_disabled:hover {
+  border: none;
+}

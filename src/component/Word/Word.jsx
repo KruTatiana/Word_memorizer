@@ -1,10 +1,13 @@
 import "./word.scss";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { flipInY } from "react-animations";
 
-export default function Word({ key, en, tr, ru, addCount }) {
+function Word({ en, tr, ru, addCount }) {
   const [click, setClick] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => ref.current.focus());
 
   const handleChange = () => {
     setClick(!click);
@@ -22,15 +25,25 @@ export default function Word({ key, en, tr, ru, addCount }) {
           <p>{tr}</p>
         </div>
         <div onClick={handleChange}>
-          {click ? (
+          <p className={click === true ? "translation" : "hide"}>{ru}</p>
+          <button
+            className={click === false ? "button_checkWord" : "hide"}
+            onClick={addCount}
+            ref={ref}
+          >
+            Проверить
+          </button>
+          {/* {click ? (
             <p>{ru}</p>
           ) : (
-            <button onClick={addCount} className="button_checkWord">
+            <button className="button_checkWord" onClick={addCount}>
               Проверить
             </button>
-          )}
+          )} */}
         </div>
       </Flip>
     </>
   );
 }
+
+export default Word;

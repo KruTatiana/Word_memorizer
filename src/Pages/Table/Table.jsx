@@ -1,8 +1,23 @@
 import "./table.scss";
+import { useState } from "react";
 import WordLine from "../../component/WordLine/WordLine";
 import wordsArr from "../../component/dictionary";
 
 const WordsList = () => {
+  const [mainWordsArr, setWordsArr] = useState(wordsArr);
+  function saveEdit(id, en, trnsc, ru) {
+    const newWordsArr = mainWordsArr.map((item, index) => {
+      if (item.id === id) {
+        item.en = en;
+        item.trnsc = trnsc;
+        item.ru = ru;
+        return item;
+      }
+      return item;
+    });
+    setWordsArr(newWordsArr);
+  }
+
   return (
     <ul className="list">
       <li className="list_head">
@@ -12,13 +27,14 @@ const WordsList = () => {
         <div className="list_empty"></div>
       </li>
       <li>
-        {wordsArr.map((item, id) => {
+        {mainWordsArr.map((item, id) => {
           return (
             <WordLine
               en={item.english}
               trnsc={item.transcription}
               ru={item.russian}
               key={id}
+              saveEdit={saveEdit}
             />
           );
         })}
