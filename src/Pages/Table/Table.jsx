@@ -5,12 +5,12 @@ import wordsArr from "../../component/dictionary";
 
 const WordsList = () => {
   const [mainWordsArr, setWordsArr] = useState(wordsArr);
-  function saveEdit(id, en, trnsc, ru) {
-    const newWordsArr = mainWordsArr.map((item, index) => {
+  function saveEdit(id, en, tr, ru) {
+    const newWordsArr = mainWordsArr.map((item) => {
       if (item.id === id) {
-        item.en = en;
-        item.trnsc = trnsc;
-        item.ru = ru;
+        item.english = en;
+        item.transcription = tr;
+        item.russian = ru;
         return item;
       }
       return item;
@@ -27,13 +27,14 @@ const WordsList = () => {
         <div className="list_empty"></div>
       </li>
       <li>
-        {mainWordsArr.map((item, id) => {
+        {mainWordsArr.map((item) => {
           return (
             <WordLine
               en={item.english}
-              trnsc={item.transcription}
+              tr={item.transcription}
               ru={item.russian}
-              key={id}
+              id={item.id}
+              key={item.id}
               saveEdit={saveEdit}
             />
           );

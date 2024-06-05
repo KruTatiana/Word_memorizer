@@ -1,29 +1,29 @@
 import { useState } from "react";
 import "./word_line.scss";
 
-const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
+const WordLine = ({ id, en, tr, ru, saveEdit }) => {
   const [edit, setEdit] = useState(false);
-  const [values, setValues] = useState({ en, trnsc, ru });
+  const [values, setValues] = useState({ en, tr, ru });
   const [word, setWord] = useState(true);
 
   let enValueSave = en;
-  let trValueSave = trnsc;
+  let trValueSave = tr;
   let ruValueSave = ru;
 
   const handleEdit = () => {
     setEdit(true);
     enValueSave = values.en;
-    trValueSave = values.trnsc;
+    trValueSave = values.tr;
     ruValueSave = values.ru;
   };
 
   const handleSave = () => {
     setEdit(false);
-    saveEdit(id, values.en, values.trnsc, values.ru);
+    saveEdit(id, values.en, values.tr, values.ru);
   };
 
   const handleBack = () => {
-    setValues({ en: enValueSave, trnsc: trValueSave, ru: ruValueSave });
+    setValues({ en: enValueSave, tr: trValueSave, ru: ruValueSave });
     setEdit(false);
   };
 
@@ -33,6 +33,18 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+    // const reEN = /a-z,A-Z/;
+    // const reTR = /\[,\]/;
+    // const reRU = /а-яё,А-ЯЁ/;
+    // if (values.en !== reEN) {
+    //   enErr();
+    // }
+    // if (values.tr !== reTR) {
+    //   trErr();
+    // }
+    // if (values.ru !== reRU) {
+    //   ruErr();
+    // }
     setValues((prevValues) => ({
       ...prevValues,
       [id]: value,
@@ -40,11 +52,21 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
     e.target.value === "" ? setWord(false) : setWord(true);
   };
 
+  const enErr = () => {
+    alert("Только строчные буквы латинского алфавита");
+  };
+  const trErr = () => {
+    alert("Добавьте квадратные скобки");
+  };
+  const ruErr = () => {
+    alert("Только строчные буквы русского алфавита");
+  };
+
   return (
     <>
       <div className={edit ? "hide" : "line_word"}>
         <div className="en-word">{en}</div>
-        <div className="tr-word">{trnsc}</div>
+        <div className="tr-word">{tr}</div>
         <div className="ru-word">{ru}</div>
         <div className="buttons">
           <button
@@ -69,9 +91,9 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
           <input
             type="text"
             id="tr"
-            value={values.trnsc}
+            value={values.tr}
             onChange={handleChange}
-            className={values.trnsc === "" ? "empty_input" : "input"}
+            className={values.tr === "" ? "empty_input" : "input"}
           />
         </div>
         <div className="ru-word">
