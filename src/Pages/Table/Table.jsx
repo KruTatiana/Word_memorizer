@@ -1,12 +1,17 @@
 import "./table.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import WordLine from "../../component/WordLine/WordLine";
-import wordsArr from "../../component/dictionary";
+import LoadingComp from "../../component/LoadingComp/LoadingComp";
+// import wordsArr from "../../component/dictionary";
+import { WordContext } from "../../component/contexts/WordsContext";
 
 const WordsList = () => {
-  const [mainWordsArr, setWordsArr] = useState(wordsArr);
+  const { words, handleWords, loading, error } = useContext(WordContext);
+  const [wordsArr, setWordsArr] = useState([]);
+  setWordsArr(words);
+
   function saveEdit(id, en, trnsc, ru) {
-    const newWordsArr = mainWordsArr.map((item, index) => {
+    const newWordsArr = wordsArr.map((item) => {
       if (item.id === id) {
         item.en = en;
         item.trnsc = trnsc;
@@ -19,27 +24,30 @@ const WordsList = () => {
   }
 
   return (
-    <ul className="list">
-      <li className="list_head">
-        <div className="list_en">Английский</div>
-        <div className="list_tr">Транскрипция</div>
-        <div className="list_ru">Перевод</div>
-        <div className="list_empty"></div>
-      </li>
-      <li>
-        {mainWordsArr.map((item, id) => {
-          return (
-            <WordLine
-              en={item.english}
-              trnsc={item.transcription}
-              ru={item.russian}
-              key={id}
-              saveEdit={saveEdit}
-            />
-          );
-        })}
-      </li>
-    </ul>
+    <div>
+      <div>{!words ? <LoadingComp /> : ""}</div>
+      <ul className="list">
+        <li className="list_head">
+          <div className="list_en">Английский</div>
+          <div className="list_tr">Транскрипция</div>
+          <div className="list_ru">Перевод</div>
+          <div className="list_empty"></div>
+        </li>
+        <li>
+          {wordsArr.map((item) => {
+            return (
+              <WordLine
+                en={item.english}
+                trnsc={item.transcription}
+                ru={item.russian}
+                key={item.id}
+                saveEdit={saveEdit}
+              />
+            );
+          })}
+        </li>
+      </ul>
+    </div>
   );
 };
 

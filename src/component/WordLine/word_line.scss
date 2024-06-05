@@ -93,8 +93,6 @@
   @extend %flex-center;
 }
 
-
-
 .button_save {
   margin-right: 5%;
   background-color: $light-green-color;
@@ -110,7 +108,6 @@
   @extend %buttons-style;
   background-image: url('../../src/assets/icons8-back.png');
 }
-
 
 .button_edit {
   background-color: $light-green-color;
