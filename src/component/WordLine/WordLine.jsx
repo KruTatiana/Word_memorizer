@@ -18,6 +18,16 @@ const WordLine = ({ id, en, tr, ru, saveEdit }) => {
   };
 
   const handleSave = () => {
+    const reEN = /[a-z]/;
+    const reTR = /\[\]/;
+    const reRU = /[а-яё]/;
+    if (reEN.test(values.en)) {
+      return enErr();
+    } else if (reTR.test(values.tr)) {
+      return trErr();
+    } else if (reRU.test(values.ru)) {
+      return ruErr();
+    }
     setEdit(false);
     saveEdit(id, values.en, values.tr, values.ru);
   };
@@ -33,18 +43,6 @@ const WordLine = ({ id, en, tr, ru, saveEdit }) => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    // const reEN = /a-z,A-Z/;
-    // const reTR = /\[,\]/;
-    // const reRU = /а-яё,А-ЯЁ/;
-    // if (values.en !== reEN) {
-    //   enErr();
-    // }
-    // if (values.tr !== reTR) {
-    //   trErr();
-    // }
-    // if (values.ru !== reRU) {
-    //   ruErr();
-    // }
     setValues((prevValues) => ({
       ...prevValues,
       [id]: value,
