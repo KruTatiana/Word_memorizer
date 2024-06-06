@@ -27,9 +27,13 @@ const WordLine = ({ id, en, tr, ru, saveEdit }) => {
       return trErr();
     } else if (reRU.test(values.ru)) {
       return ruErr();
+    } else {
+      console.log(
+        `english: ${values.en}; transcription: ${values.tr}; russian: ${values.ru}`
+      );
+      setEdit(false);
+      saveEdit(id, values.en, values.tr, values.ru);
     }
-    setEdit(false);
-    saveEdit(id, values.en, values.tr, values.ru);
   };
 
   const handleBack = () => {
