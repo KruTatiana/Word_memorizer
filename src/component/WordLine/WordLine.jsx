@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./word_line.scss";
 
 const WordLine = ({ id, en, tr, ru, saveEdit }) => {
   const [edit, setEdit] = useState(false);
   const [values, setValues] = useState({ en, tr, ru });
-  const [word, setWord] = useState(true);
+  const [isWordEmpty, setIsWordEmpty] = useState(false);
 
   let enValueSave = en;
   let trValueSave = tr;
   let ruValueSave = ru;
+
+  useEffect(() => {
+    checkIfWordIsEmpty();
+  }, [values]);
+
+  const checkIfWordIsEmpty = () => {
+    setIsWordEmpty(values.en === "" || values.tr === "" || values.ru === "");
+  };
 
   const handleEdit = () => {
     setEdit(true);
@@ -19,13 +27,13 @@ const WordLine = ({ id, en, tr, ru, saveEdit }) => {
 
   const handleSave = () => {
     const reEN = /[a-z]/;
-    const reTR = /\[\]/;
-    const reRU = /[а-яё]/;
-    if (reEN.test(values.en)) {
+    const reTR = /\[.*\]/;
+    const reRU = /^[а-яё]+$/;
+    if (!reEN.test(values.en)) {
       return enErr();
-    } else if (reTR.test(values.tr)) {
+    } else if (!reTR.test(values.tr)) {
       return trErr();
-    } else if (reRU.test(values.ru)) {
+    } else if (!reRU.test(values.ru)) {
       return ruErr();
     } else {
       console.log(
@@ -51,7 +59,6 @@ const WordLine = ({ id, en, tr, ru, saveEdit }) => {
       ...prevValues,
       [id]: value,
     }));
-    e.target.value === "" ? setWord(false) : setWord(true);
   };
 
   const enErr = () => {
@@ -110,8 +117,8 @@ const WordLine = ({ id, en, tr, ru, saveEdit }) => {
         <div className="buttons">
           <button
             onClick={handleSave}
-            disabled={word === false ? true : ""}
-            className={word === false ? "button_save_disabled" : "button_save"}
+            disabled={isWordEmpty}
+            className={isWordEmpty ? "button_save_disabled" : "button_save"}
           ></button>
           <button onClick={handleBack} className="button_back"></button>
           <button onClick={handleClose} className="button_close"></button>
