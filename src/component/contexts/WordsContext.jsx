@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 const WordContext = createContext();
 
+//25:19 видео по контексту
+
 function WordContextProvider(props) {
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
