@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
 import { wordContext } from "../contexts/WordContextProvider";
+import JSONServ from "../../Services/JSONServices";
 import "./word_line.scss";
 
 const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
   const [edit, setEdit] = useState(false);
   const [values, setValues] = useState({ en, trnsc, ru });
   const [word, setWord] = useState(true);
-  const { dataArr } = useContext(wordContext);
+  const { updServ, setUpdServ } = useContext(wordContext);
 
   let enValueSave = en;
   let trValueSave = trnsc;
@@ -19,9 +20,15 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
     ruValueSave = values.ru;
   };
 
-  const handleSave = () => {
-    setEdit(false);
-    saveEdit(id, values.en, values.trnsc, values.ru);
+  const handleSave = (e) => {
+    const obj = {
+      id: id,
+      english: values.en,
+      transcriptions: values.trnsc,
+      russian: values.ru,
+      tags: "",
+      tags_json: "",
+    };
   };
 
   const handleBack = () => {
@@ -87,7 +94,7 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
         </div>
         <div className="buttons">
           <button
-            onClick={handleSave}
+            // onClick={handleSave}
             disabled={word === false ? true : ""}
             className={word === false ? "button_save_disabled" : "button_save"}
           ></button>

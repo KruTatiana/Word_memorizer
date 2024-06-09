@@ -23,7 +23,7 @@ const WordsList = () => {
                 trnsc={item.transcription}
                 ru={item.russian}
                 key={item.id}
-                saveEdit={saveEdit}
+                // saveEdit={saveEdit}
               />
             );
           })}

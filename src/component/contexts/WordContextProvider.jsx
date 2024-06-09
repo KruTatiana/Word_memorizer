@@ -3,7 +3,7 @@ import JSONServ from "../../Services/JSONServices";
 export const wordContext = createContext();
 
 export function WordContextProvider({ children }) {
-  const [dataArr, setWords] = useState(false);
+  const [dataArr, setWords] = useState([]);
   const [updServ, setUpdServ] = useState(false);
 
   if (!dataArr) {
