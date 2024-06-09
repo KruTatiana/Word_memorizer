@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { wordContext } from "../contexts/WordContextProvider";
 import "./word_line.scss";
 
 const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
   const [edit, setEdit] = useState(false);
   const [values, setValues] = useState({ en, trnsc, ru });
   const [word, setWord] = useState(true);
+  const { dataArr } = useContext(wordContext);
 
   let enValueSave = en;
   let trValueSave = trnsc;
