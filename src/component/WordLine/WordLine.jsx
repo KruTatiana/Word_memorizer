@@ -21,14 +21,16 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
   };
 
   const handleSave = (e) => {
-    const obj = {
+    e.preventDefault();
+    JSONServ.addData({
       id: id,
       english: values.en,
       transcriptions: values.trnsc,
       russian: values.ru,
       tags: "",
       tags_json: "",
-    };
+    });
+    setUpdServ(!updServ);
   };
 
   const handleBack = () => {
@@ -94,7 +96,7 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
         </div>
         <div className="buttons">
           <button
-            // onClick={handleSave}
+            onClick={handleSave}
             disabled={word === false ? true : ""}
             className={word === false ? "button_save_disabled" : "button_save"}
           ></button>
