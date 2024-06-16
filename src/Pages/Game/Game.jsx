@@ -1,17 +1,18 @@
-import { useState, useEffect, useRef, forwardRef } from "react";
+import { useContext, useState } from "react";
 import Word from "../../component/Word/Word";
+import wordContext from "../../component/contexts/WordContextProvider";
 import "./game.scss";
 import wordsArr from "../../component/dictionary";
 
 function WordCard() {
-  const [itemIndex, setIndex] = useState(0);
-  const [wordsCount, setCount] = useState(0);
-  const endItem = wordsArr.length - 1;
-  const wordObj = wordsArr[itemIndex];
+  const { dataArr } = useContext(wordContext);
+  // const [itemIndex, setIndex] = useState(0);
+  // const [wordsCount, setCount] = useState(0);
+  // const endItem = wordsArr.length - 1;
+  // const wordObj = wordsArr[itemIndex];
 
-  const addCount = () => {
-    setCount(wordsCount + 1);
-  };
+  // const addCount = () => {
+  //   setCount(wordsCount + 1);
 
   return (
     <div className="card_container">

@@ -20,10 +20,9 @@ const WordsList = () => {
             return (
               <WordLine
                 en={item.english}
-                trnsc={item.transcription}
+                tr={item.transcription}
                 ru={item.russian}
                 key={item.id}
-                // saveEdit={saveEdit}
               />
             );
           })}

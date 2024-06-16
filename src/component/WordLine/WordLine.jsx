@@ -3,29 +3,42 @@ import { wordContext } from "../contexts/WordContextProvider";
 import JSONServ from "../../Services/JSONServices";
 import "./word_line.scss";
 
-const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
+const WordLine = ({ id, en, tr, ru }) => {
   const [edit, setEdit] = useState(false);
-  const [values, setValues] = useState({ en, trnsc, ru });
+  const [values, setValues] = useState({ en, tr, ru });
   const [word, setWord] = useState(true);
   const { updServ, setUpdServ } = useContext(wordContext);
 
   let enValueSave = en;
-  let trValueSave = trnsc;
+  let trValueSave = tr;
   let ruValueSave = ru;
 
   const handleEdit = () => {
     setEdit(true);
     enValueSave = values.en;
-    trValueSave = values.trnsc;
+    trValueSave = values.tr;
     ruValueSave = values.ru;
   };
 
   const handleSave = (e) => {
     e.preventDefault();
     JSONServ.addData({
+      id: e.id,
+      english: values.en,
+      transcriptions: values.tr,
+      russian: values.ru,
+      tags: "",
+      tags_json: "",
+    });
+    setUpdServ(!updServ);
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    JSONServ.deleteData({
       id: id,
       english: values.en,
-      transcriptions: values.trnsc,
+      transcriptions: values.tr,
       russian: values.ru,
       tags: "",
       tags_json: "",
@@ -34,7 +47,7 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
   };
 
   const handleBack = () => {
-    setValues({ en: enValueSave, trnsc: trValueSave, ru: ruValueSave });
+    setValues({ en: enValueSave, tr: trValueSave, ru: ruValueSave });
     setEdit(false);
   };
 
@@ -55,7 +68,7 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
     <>
       <div className={edit ? "hide" : "line_word"}>
         <div className="en-word">{en}</div>
-        <div className="tr-word">{trnsc}</div>
+        <div className="tr-word">{tr}</div>
         <div className="ru-word">{ru}</div>
         <div className="buttons">
           <button
@@ -63,7 +76,7 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
             className="button_edit"
             id="buttonEditWord"
           ></button>
-          <button className="button_delete"></button>
+          <button className="button_delete" onClick={handleDelete}></button>
         </div>
       </div>
       <div className={edit ? "line_input" : "hide"}>
@@ -80,9 +93,9 @@ const WordLine = ({ id, en, trnsc, ru, saveEdit }) => {
           <input
             type="text"
             id="tr"
-            value={values.trnsc}
+            value={values.tr}
             onChange={handleChange}
-            className={values.trnsc === "" ? "empty_input" : "input"}
+            className={values.tr === "" ? "empty_input" : "input"}
           />
         </div>
         <div className="ru-word">
