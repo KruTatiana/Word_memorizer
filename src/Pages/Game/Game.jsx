@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Word from "../../component/Word/Word";
 import { wordContext } from "../../component/contexts/WordContextProvider";
 import "./game.scss";
@@ -9,8 +9,6 @@ export default function WordCard() {
   const [wordsCount, setCount] = useState(0);
   const endItem = dataArr.length - 1;
   const wordObj = dataArr[itemIndex];
-  console.log(dataArr);
-  console.log(wordObj);
 
   const addCount = () => {
     setCount(wordsCount + 1);

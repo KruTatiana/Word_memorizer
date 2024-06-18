@@ -10,6 +10,7 @@ export default class JSONServ {
     }
   }
 
+
   static async addData(data) {
     try {
       await fetch ("http://itgirlschool.justmakeit.ru/api/words",{
@@ -22,6 +23,7 @@ export default class JSONServ {
     }
   }
 
+  
   static async deleteData(dataArr) {
     try {
       await dataArr.map((item)=>{
