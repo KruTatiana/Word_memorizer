@@ -1,9 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import JSONServ from "../../Services/JSONServices";
 export const wordContext = createContext();
 
 export function WordContextProvider({ children }) {
-  const [dataArr, setWords] = useState([]);
+  const [dataArr, setDataArr] = useState([]);
   const [updServ, setUpdServ] = useState(false);
 
   if (!dataArr) {
@@ -16,14 +16,14 @@ export function WordContextProvider({ children }) {
 
   async function getDataServ() {
     const data = await JSONServ.getData();
-    setWords(data);
+    setDataArr(data);
   }
 
   useEffect(() => {
     getDataServ();
   }, [updServ]);
 
-  const stateContext = { dataArr, setWords, updServ, setUpdServ };
+  const stateContext = { dataArr, setDataArr, updServ, setUpdServ };
 
   return (
     <wordContext.Provider value={stateContext}>{children}</wordContext.Provider>

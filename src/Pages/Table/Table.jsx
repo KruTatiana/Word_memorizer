@@ -1,5 +1,5 @@
 import "./table.scss";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import WordLine from "../../component/WordLine/WordLine";
 import { wordContext } from "../../component/contexts/WordContextProvider";
 

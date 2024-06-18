@@ -35,14 +35,7 @@ const WordLine = ({ id, en, tr, ru }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    JSONServ.deleteData({
-      id: id,
-      english: values.en,
-      transcriptions: values.tr,
-      russian: values.ru,
-      tags: "",
-      tags_json: "",
-    });
+    JSONServ.deleteData(e.id);
     setUpdServ(!updServ);
   };
 
