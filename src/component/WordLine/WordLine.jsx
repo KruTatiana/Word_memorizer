@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./word_line.scss";
 
-const WordLine = ({ id, en, tr, ru, saveEdit }) => {
+const WordLine = ({ id, en, tr, ru }) => {
   const [edit, setEdit] = useState(false);
   const [values, setValues] = useState({ en, tr, ru });
   const [isWordEmpty, setIsWordEmpty] = useState(false);
