@@ -1,9 +1,9 @@
-import "./table.scss";
 import { useState, useContext, useEffect } from "react";
 import WordLine from "../../component/WordLine/WordLine";
 import { wordContext } from "../../component/contexts/WordContextProvider";
 import JSONServ from "../../Services/JSONServices";
 import addImg from "../../assets/add.png";
+import "./table.scss";
 
 const WordsList = () => {
   const { dataArr, updServ, setUpdServ } = useContext(wordContext);
@@ -35,10 +35,10 @@ const WordsList = () => {
     setUpdServ(!updServ);
   };
 
-  //странная функция
   const checkIfNewIsEmpty = () => {
     setIsWordEmpty(newValueEn === "" || newValueTr === "" || newValueRu === "");
   };
+
   const enErr = () => {
     alert("Только строчные буквы латинского алфавита");
   };

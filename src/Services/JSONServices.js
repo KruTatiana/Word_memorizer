@@ -54,21 +54,14 @@ export default class JSONServ {
     }
   }
 
-  
-
-//Удаление задачи кнопкой на самой задаче
-
-// function removeTask(el){
-// arrayFromStorage = localStorage.getItem('tasksStorage');
-// arrayFromStorage = JSON.parse(arrayFromStorage);
-//   arrayFromStorage.forEach((obj,key) => {
-//       if(obj.id == taskId) {
-//           arrayFromStorage.splice(key,1);
-//       }
-//   });
-//   window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
-//   tasksList.innerHTML = '';
-//   getTaskList();
-// }
-
+  static async getCard() {
+    try {
+      const resp = await fetch ("/api/words/1");
+      const data = await resp.json();
+      return data;
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
 }

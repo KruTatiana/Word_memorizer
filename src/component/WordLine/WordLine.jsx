@@ -33,20 +33,8 @@ const WordLine = ({ id, en, tr, ru, handleDelete }) => {
     });
     handleClose();
     setUpdServ(!updServ);
+    console.log(updServ);
   }
-
-  // const handleSave = (e) => {
-  //   e.preventDefault();
-  //   JSONServ.addData({
-  //     id: e.id,
-  //     english: e.values.en,
-  //     transcriptions: e.values.tr,
-  //     russian: e.values.ru,
-  //     tags: "",
-  //     tags_json: "",
-  //   });
-  //   setUpdServ(!updServ);
-  // };
 
   const handleBack = () => {
     setValues({ en: enValueSave, tr: trValueSave, ru: ruValueSave });

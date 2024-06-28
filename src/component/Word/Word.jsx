@@ -33,13 +33,6 @@ function Word({ en, tr, ru, addCount }) {
           >
             Проверить
           </button>
-          {/* {click ? (
-            <p>{ru}</p>
-          ) : (
-            <button className="button_checkWord" onClick={addCount}>
-              Проверить
-            </button>
-          )} */}
         </div>
       </Flip>
     </>

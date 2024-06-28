@@ -6,13 +6,13 @@ export function WordContextProvider({ children }) {
   const [dataArr, setDataArr] = useState([]);
   const [updServ, setUpdServ] = useState(false);
 
-  if (!dataArr) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
-  }
+  // if (!dataArr) {
+  //   return (
+  //     <div>
+  //       <h1>Loading...</h1>
+  //     </div>
+  //   );
+  // }
 
   async function getDataServ() {
     const data = await JSONServ.getData();
