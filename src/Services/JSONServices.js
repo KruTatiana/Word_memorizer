@@ -1,7 +1,9 @@
+import { json } from "react-router-dom";
+
 export default class JSONServ {
   static async getData() {
     try {
-      const resp = await fetch ("http://itgirlschool.justmakeit.ru/api/words");
+      const resp = await fetch ("/api/words");
       const data = await resp.json();
       return data;
     }
@@ -10,11 +12,11 @@ export default class JSONServ {
     }
   }
 
-
   static async addData(data) {
     try {
-      await fetch ("http://itgirlschool.justmakeit.ru/api/words",{
+      await fetch ("/api/words/add",{
         method: "POST",
+        headers:{"Content-Type": "application/json"},
         body: JSON.stringify(data)
       });
     }
@@ -23,17 +25,28 @@ export default class JSONServ {
     }
   }
 
-  
-  static async deleteData(dataArr) {
+  static async changeData(data) {
+    let id = data.id;
+
     try {
-      await dataArr.map((item)=>{
-        if (item.id === id){
-          dataArr.splice(id,1);
-        }
-      });
-      await fetch ("http://itgirlschool.justmakeit.ru/api/words",{
+      await fetch (`/api/words/${id}/update`,{
         method: "POST",
-        body: JSON.stringify(dataArr)
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      });
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
+  
+  static async deleteData(data) {
+    let id = data.id;
+
+    try {
+      await fetch (`/api/words/${id}/delete`,{
+        method: "POST",
+        headers:{"Content-Type": "application/json"}
       });
     }
     catch(e) {
@@ -41,6 +54,7 @@ export default class JSONServ {
     }
   }
 
+  
 
 //Удаление задачи кнопкой на самой задаче
 
@@ -57,21 +71,4 @@ export default class JSONServ {
 //   getTaskList();
 // }
 
-
-  // static async changeData(dataArr, id) {
-  //   const data = dataArr.map(item){
-  //     if (item.id === id){
-
-  //     }
-  //   }
-  //   try {
-  //     await fetch ("http://itgirlschool.justmakeit.ru/api/words",{
-  //       method: "POST",
-  //       body: JSON.stringify(dataArr)
-  //     });
-  //   }
-  //   catch(e) {
-  //     console.log(e);
-  //   }
-  // }
 }

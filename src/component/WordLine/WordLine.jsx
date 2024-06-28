@@ -1,43 +1,52 @@
 import { useState, useContext } from "react";
-import { wordContext } from "../contexts/WordContextProvider";
+import { wordContext } from "../../component/contexts/WordContextProvider";
 import JSONServ from "../../Services/JSONServices";
 import "./word_line.scss";
 
-const WordLine = ({ id, en, tr, ru }) => {
+const WordLine = ({ id, en, tr, ru, handleDelete }) => {
+  const { updServ, setUpdServ } = useContext(wordContext);
   const [edit, setEdit] = useState(false);
   const [values, setValues] = useState({ en, tr, ru });
   const [word, setWord] = useState(true);
-  const { updServ, setUpdServ } = useContext(wordContext);
+  const [key, setKey] = useState("");
 
-  let enValueSave = en;
-  let trValueSave = tr;
-  let ruValueSave = ru;
+  let enValueSave;
+  let trValueSave;
+  let ruValueSave;
 
   const handleEdit = () => {
     setEdit(true);
     enValueSave = values.en;
     trValueSave = values.tr;
     ruValueSave = values.ru;
+    setKey(id);
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    JSONServ.addData({
-      id: e.id,
+  function saveEdit(key, values) {
+    JSONServ.changeData({
+      id: key,
       english: values.en,
       transcriptions: values.tr,
       russian: values.ru,
       tags: "",
       tags_json: "",
     });
+    handleClose();
     setUpdServ(!updServ);
-  };
+  }
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    JSONServ.deleteData(e.id);
-    setUpdServ(!updServ);
-  };
+  // const handleSave = (e) => {
+  //   e.preventDefault();
+  //   JSONServ.addData({
+  //     id: e.id,
+  //     english: e.values.en,
+  //     transcriptions: e.values.tr,
+  //     russian: e.values.ru,
+  //     tags: "",
+  //     tags_json: "",
+  //   });
+  //   setUpdServ(!updServ);
+  // };
 
   const handleBack = () => {
     setValues({ en: enValueSave, tr: trValueSave, ru: ruValueSave });
@@ -49,17 +58,17 @@ const WordLine = ({ id, en, tr, ru }) => {
   };
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { name, value } = e.target;
     setValues((prevValues) => ({
       ...prevValues,
-      [id]: value,
+      [name]: value,
     }));
     e.target.value === "" ? setWord(false) : setWord(true);
   };
 
   return (
     <>
-      <div className={edit ? "hide" : "line_word"}>
+      <div id={id} className={edit ? "hide" : "line_word"}>
         <div className="en-word">{en}</div>
         <div className="tr-word">{tr}</div>
         <div className="ru-word">{ru}</div>
@@ -69,14 +78,19 @@ const WordLine = ({ id, en, tr, ru }) => {
             className="button_edit"
             id="buttonEditWord"
           ></button>
-          <button className="button_delete" onClick={handleDelete}></button>
+          <button
+            className="button_delete"
+            onClick={(e) => {
+              handleDelete({ id });
+            }}
+          ></button>
         </div>
       </div>
       <div className={edit ? "line_input" : "hide"}>
         <div className="en-word">
           <input
             type="text"
-            id="en"
+            name="en"
             value={values.en}
             onChange={handleChange}
             className={values.en === "" ? "empty_input" : "input"}
@@ -85,7 +99,7 @@ const WordLine = ({ id, en, tr, ru }) => {
         <div className="tr-word">
           <input
             type="text"
-            id="tr"
+            name="tr"
             value={values.tr}
             onChange={handleChange}
             className={values.tr === "" ? "empty_input" : "input"}
@@ -94,7 +108,7 @@ const WordLine = ({ id, en, tr, ru }) => {
         <div className="ru-word">
           <input
             type="text"
-            id="ru"
+            name="ru"
             value={values.ru}
             onChange={handleChange}
             className={values.ru === "" ? "empty_input" : "input"}
@@ -102,7 +116,9 @@ const WordLine = ({ id, en, tr, ru }) => {
         </div>
         <div className="buttons">
           <button
-            onClick={handleSave}
+            onClick={(e) => {
+              saveEdit(key, values);
+            }}
             disabled={word === false ? true : ""}
             className={word === false ? "button_save_disabled" : "button_save"}
           ></button>
