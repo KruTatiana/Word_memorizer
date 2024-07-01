@@ -1,10 +1,12 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Word from "../../component/Word/Word";
 import { wordContext } from "../../component/contexts/WordContextProvider";
 import "./game.scss";
+import JSONServ from "../../Services/JSONServices";
 
 const WordCard = () => {
-  const { dataArr } = useContext(wordContext);
+  const { dataArr, setDataArr, updServ, setUpdServ } = useContext(wordContext);
+  // const [wordObj, setWordObj] = useState({});
   const [itemIndex, setIndex] = useState(0);
   const [wordsCount, setCount] = useState(0);
   const endItem = dataArr.length - 1;
@@ -13,6 +15,19 @@ const WordCard = () => {
   const addCount = () => {
     setCount(wordsCount + 1);
   };
+
+  // const showWord = (itemIndex) => {
+  //   console.log(itemIndex);
+  //   setWordObj(JSONServ.getCard(itemIndex));
+  //   setUpdServ(!updServ);
+  // };
+
+  // useEffect(
+  //   (itemIndex) => {
+  //     showWord(itemIndex);
+  //   },
+  //   [itemIndex]
+  // );
 
   return (
     <>

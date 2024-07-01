@@ -54,9 +54,13 @@ export default class JSONServ {
     }
   }
 
-  static async getCard() {
+  static async getCard(itemIndex) {
+    let i = itemIndex.itemIndex;
+    console.log(i);
+
+
     try {
-      const resp = await fetch ("/api/words/1");
+      const resp = await fetch (`/api/words/${i}`);
       const data = await resp.json();
       return data;
     }
