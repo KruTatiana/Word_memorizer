@@ -84,7 +84,7 @@ const WordLine = inject(["wordStore"])(
     const handleDelete = (id) => {
       let data = id.id;
       wordStore.deleteWord(data);
-      wordStore.getData();
+      setUpdServ(!updServ);
     };
 
     const enErr = () => {

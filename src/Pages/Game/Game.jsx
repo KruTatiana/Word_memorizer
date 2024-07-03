@@ -8,22 +8,25 @@ const WordCard = inject(["wordStore"])(
     const [itemIndex, setIndex] = useState(0);
     const [wordsCount, setCount] = useState(0);
     const [endItem, setEndItem] = useState("");
-    const [cardData, setCardData] = useState("");
+    const [cardData, setCardData] = useState({});
 
     useEffect(() => {
       wordStore.getData();
-      showCard(0);
-      setEndItem(wordStore.words.length - 1);
+      setTimeout(() => {
+        setCardData(wordStore.words[0]);
+        setEndItem(wordStore.words.length - 1);
+      }, 1000);
     }, []);
 
     useEffect(() => {
       showCard(itemIndex);
     }, [itemIndex]);
 
-    const showCard = (itemIndex) => {
-      setCardData(wordStore.words[itemIndex]);
+    const showCard = () => {
+      if (0 < itemIndex) {
+        setCardData(wordStore.words[itemIndex]);
+      }
     };
-    console.log(cardData);
 
     const addCount = () => {
       setCount(wordsCount + 1);

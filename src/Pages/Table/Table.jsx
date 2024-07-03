@@ -13,49 +13,66 @@ const WordsList = inject(["wordStore"])(
     const [newValueTr, setNewTr] = useState("");
     const [newValueRu, setNewRu] = useState("");
     const [updServ, setUpdServ] = useState(false);
+    const reEN = /[a-z]/;
+    const reTR = /\[.*\]/;
+    const reRU = /^[а-яё]+$/;
 
     useEffect(() => {
       wordStore.getData();
     }, [updServ]);
 
-    // const checkIfNewIsEmpty = () => {
-    //   setIsWordEmpty(
-    //     newValueEn === "" || newValueTr === "" || newValueRu === ""
-    //   );
-    // };
-    // const enErr = () => {
-    //   alert("Только строчные буквы латинского алфавита");
-    // };
-    // const trErr = () => {
-    //   alert("Добавьте квадратные скобки");
-    // };
-    // const ruErr = () => {
-    //   alert("Только строчные буквы русского алфавита");
-    // };
+    useEffect(() => {
+      checkIfNewIsEmpty();
+    }, [newValueEn]);
+    useEffect(() => {
+      checkIfNewIsEmpty();
+    }, [newValueTr]);
+    useEffect(() => {
+      checkIfNewIsEmpty();
+    }, [newValueRu]);
 
-    // useEffect(() => {
-    //   checkIfNewIsEmpty();
-    // }, [newValueEn, newValueTr, newValueRu]);
+    const handleNewRu = (e) => {
+      setNewRu(e.target.value);
+      if (!reRU.test(newValueRu)) {
+        return ruErr();
+      } else {
+        console.log(`russian: ${newValueRu}`);
+      }
+    };
 
-    // const handlecheckNew = (e) => {
-    //   setNewEn(e.target.newValueEn);
-    //   setNewTr(e.target.newValueTr);
-    //   setNewRu(e.target.newValueRu);
-    //   const reEN = /[a-z]/;
-    //   const reTR = /\[.*\]/;
-    //   const reRU = /^[а-яё]+$/;
-    //   if (!reEN.test(newValueEn)) {
-    //     return enErr();
-    //   } else if (!reTR.test(newValueTr)) {
-    //     return trErr();
-    //   } else if (!reRU.test(newValueRu)) {
-    //     return ruErr();
-    //   } else {
-    //     console.log(
-    //       `english: ${newValueEn}; transcription: ${newValueTr}; russian: ${newValueRu}`
-    //     );
-    //   }
-    // };
+    const handleNewTr = (e) => {
+      setNewTr(e.target.value);
+      if (!reTR.test(newValueTr)) {
+        return trErr();
+      } else {
+        console.log(`translation: ${newValueTr}`);
+      }
+    };
+
+    const handleNewEn = (e) => {
+      setNewEn(e.target.value);
+      if (!reEN.test(newValueEn)) {
+        return enErr();
+      } else {
+        console.log(`english: ${newValueEn}`);
+      }
+    };
+
+    const checkIfNewIsEmpty = () => {
+      setIsWordEmpty(
+        newValueEn === "" || newValueTr === "" || newValueRu === ""
+      );
+    };
+
+    const enErr = () => {
+      alert("Только строчные буквы латинского алфавита");
+    };
+    const trErr = () => {
+      alert("Добавьте квадратные скобки");
+    };
+    const ruErr = () => {
+      alert("Только строчные буквы русского алфавита");
+    };
 
     const handleSaveNew = () => {
       let keyId = uuidv4();
@@ -75,6 +92,9 @@ const WordsList = inject(["wordStore"])(
 
     const handleNewClose = () => {
       setAddNew(false);
+      setNewEn("");
+      setNewTr("");
+      setNewRu("");
     };
 
     const handleAdd = () => {
@@ -100,9 +120,7 @@ const WordsList = inject(["wordStore"])(
               type="text"
               name="en"
               value={newValueEn}
-              onChange={(e) => {
-                setNewEn(e.target.value);
-              }}
+              onChange={handleNewEn}
               className={newValueEn === "" ? "empty_input" : "input"}
             />
           </div>
@@ -111,9 +129,7 @@ const WordsList = inject(["wordStore"])(
               type="text"
               name="tr"
               value={newValueTr}
-              onChange={(e) => {
-                setNewTr(e.target.value);
-              }}
+              onChange={handleNewTr}
               className={newValueTr === "" ? "empty_input" : "input"}
             />
           </div>
@@ -122,9 +138,7 @@ const WordsList = inject(["wordStore"])(
               type="text"
               name="ru"
               value={newValueRu}
-              onChange={(e) => {
-                setNewRu(e.target.value);
-              }}
+              onChange={handleNewRu}
               className={newValueRu === "" ? "empty_input" : "input"}
             />
           </div>
