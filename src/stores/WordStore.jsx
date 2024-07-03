@@ -1,6 +1,6 @@
 import { makeAutoObservable, observable, action, computed } from "mobx";
 
-class WordsStore {
+class ObsWordsStore {
   words = [];
   isGetLoading = false;
   isLoading = false;
@@ -10,10 +10,12 @@ class WordsStore {
       word: observable,
       isGetLoading: observable,
       isLoading: observable,
+      nextID: computed,
       getData: action,
       deleteWord: action,
       updateWord: action,
       addNewWord: action,
+      getCard: action,
     });
   }
 
@@ -40,7 +42,7 @@ class WordsStore {
       });
   }
 
-  deleteWord(id, index) {
+  deleteWord(id) {
     this.isLoading = true;
     return fetch(`/api/words/${id}/delete`, {
       method: "POST",
@@ -53,10 +55,6 @@ class WordsStore {
           throw new Error("Network response was not ok");
         }
         console.log(resp);
-        const newArr = this.words.filter((el, i) => {
-          return i != index;
-        });
-        this.words = newArr;
       })
       .catch((error) => {
         console.error(error);
@@ -67,8 +65,11 @@ class WordsStore {
   }
 
   updateWord(word, index) {
+    let id = index.id;
+    console.log(id);
+    console.log(typeof id);
     this.isLoading = true;
-    return fetch(`/api/words/${word.id}/update`, {
+    return fetch(`/api/words/${id}/update`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -110,8 +111,6 @@ class WordsStore {
           throw new Error("Network response was not ok");
         }
         console.log(resp);
-        this.words.push(word);
-        return true;
       })
       .catch((error) => {
         console.error(error);
@@ -121,6 +120,26 @@ class WordsStore {
         this.isLoading = false;
       });
   }
+
+  getCard(itemIndex) {
+    this.index = itemIndex;
+    this.isLoading = true;
+    return fetch(`/api/words/${index}`, {
+      method: "GET",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Network response was not ok");
+        }
+        console.log(resp);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
 }
 
-export default WordsStore;
+export default ObsWordsStore;
