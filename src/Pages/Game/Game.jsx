@@ -1,18 +1,29 @@
+import "./game.scss";
 import { useState, useEffect } from "react";
 import Word from "../../component/Word/Word";
-import "./game.scss";
 import { observer, inject } from "mobx-react";
 
 const WordCard = inject(["wordStore"])(
   observer(({ wordStore }) => {
     const [itemIndex, setIndex] = useState(0);
     const [wordsCount, setCount] = useState(0);
-    const dataArr = wordStore.words;
-    const endItem = dataArr.length - 1;
+    const [endItem, setEndItem] = useState("");
+    const [cardData, setCardData] = useState("");
 
     useEffect(() => {
       wordStore.getData();
+      showCard(0);
+      setEndItem(wordStore.words.length - 1);
     }, []);
+
+    useEffect(() => {
+      showCard(itemIndex);
+    }, [itemIndex]);
+
+    const showCard = (itemIndex) => {
+      setCardData(wordStore.words[itemIndex]);
+    };
+    console.log(cardData);
 
     const addCount = () => {
       setCount(wordsCount + 1);
@@ -28,10 +39,10 @@ const WordCard = inject(["wordStore"])(
         ></button>
         <div className="card">
           <Word
-            en={dataArr[itemIndex].english}
-            tr={dataArr[itemIndex].transcription}
-            ru={dataArr[itemIndex].russian}
-            key={dataArr[itemIndex].id}
+            en={cardData.english}
+            tr={cardData.transcription}
+            ru={cardData.russian}
+            key={cardData.id}
             addCount={addCount}
           />
           <div>изучено {wordsCount} слов</div>

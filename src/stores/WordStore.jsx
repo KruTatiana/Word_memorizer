@@ -8,6 +8,7 @@ class ObsWordsStore {
   constructor() {
     makeAutoObservable(this, {
       word: observable,
+      card: observable,
       isGetLoading: observable,
       isLoading: observable,
       nextID: computed,
@@ -15,7 +16,6 @@ class ObsWordsStore {
       deleteWord: action,
       updateWord: action,
       addNewWord: action,
-      getCard: action,
     });
   }
 
@@ -115,26 +115,6 @@ class ObsWordsStore {
       .catch((error) => {
         console.error(error);
         return false;
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
-  }
-
-  getCard(itemIndex) {
-    this.index = itemIndex;
-    this.isLoading = true;
-    return fetch(`/api/words/${index}`, {
-      method: "GET",
-    })
-      .then((resp) => {
-        if (!resp.ok) {
-          throw new Error("Network response was not ok");
-        }
-        console.log(resp);
-      })
-      .catch((error) => {
-        console.error(error);
       })
       .finally(() => {
         this.isLoading = false;
