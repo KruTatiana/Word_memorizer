@@ -2,12 +2,14 @@
   "name": "word-memorizer",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://krutatiana.github.io/Word_memorizer",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
@@ -32,6 +34,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "gh-pages": "6.1.1",
     "sass": "^1.74.1",
     "vite": "^5.2.0"
   },
